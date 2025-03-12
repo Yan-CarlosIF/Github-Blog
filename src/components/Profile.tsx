@@ -30,7 +30,7 @@ const Profile = ({ profile }: ProfileProps) => {
         alt="Foto de Perfil"
       />
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 w-full">
         <div className="flex items-center justify-between">
           <h1 className="text-[var(--base-title)] text-2xl font-bold">
             {profile.name}

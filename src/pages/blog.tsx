@@ -11,6 +11,9 @@ const Blog = () => {
   const [profile, setProfile] = useState<GithubProfile>({} as GithubProfile);
   const [content, setContent] = useState<string>("");
   const [repos, setRepos] = useState<GithubRepo[]>([]);
+  const [filteredRepos, setFilteredRepos] = useState<GithubRepo[] | undefined>(
+    []
+  );
 
   useEffect(() => {
     fetch(`https://api.github.com/users/${PROFILE_NAME}`)
@@ -25,6 +28,16 @@ const Blog = () => {
       .then((response) => response.json())
       .then((data) => setRepos(data));
   }, []);
+
+  useEffect(() => {
+    if (content) {
+      const filtered = repos.filter((repo) =>
+        repo.name.toLowerCase().includes(content.toLowerCase())
+      );
+
+      setFilteredRepos(filtered);
+    }
+  }, [content, repos]);
 
   return (
     <div className="flex flex-col justify-center items-center mb-58">
@@ -53,13 +66,21 @@ const Blog = () => {
           />
         </div>
         <div className="grid grid-cols-2 gap-8 mt-12">
-          {repos.map((repo) => {
-            return (
-              <a key={repo.html_url} href={repo.html_url} target="_blank">
-                <Card repo={repo} />
-              </a>
-            );
-          })}
+          {!content
+            ? repos.map((repo) => {
+                return (
+                  <a key={repo.html_url} href={repo.html_url} target="_blank">
+                    <Card repo={repo} />
+                  </a>
+                );
+              })
+            : filteredRepos?.map((repo) => {
+                return (
+                  <a key={repo.html_url} href={repo.html_url} target="_blank">
+                    <Card repo={repo} />
+                  </a>
+                );
+              })}
         </div>
       </div>
     </div>
