@@ -3,6 +3,7 @@ import Header from "../assets/Cover.svg";
 import Profile from "../components/Profile";
 import { GithubProfile } from "../types/profile";
 import { twMerge } from "tailwind-merge";
+import Card from "../components/Card";
 
 const Blog = () => {
   const [profile, setProfile] = useState<GithubProfile>({} as GithubProfile);
@@ -15,9 +16,9 @@ const Blog = () => {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center mb-58">
       <img className="w-full h-[296px] object-cover" src={Header} alt="" />
-      <div className="">
+      <div>
         <Profile profile={profile} />
         <div className="flex flex-col self-start gap-3 mt-18">
           <div className="flex items-center justify-between">
@@ -39,6 +40,15 @@ const Blog = () => {
             onChange={(e) => setContent(e.target.value)}
             value={content}
           />
+        </div>
+        <div className="grid grid-cols-2 gap-8 mt-12">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
         </div>
       </div>
     </div>
