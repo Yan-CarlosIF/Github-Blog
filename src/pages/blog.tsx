@@ -1,18 +1,27 @@
 import { useEffect, useState } from "react";
 import Header from "../assets/Cover.svg";
 import Profile from "../components/Profile";
-import { GithubProfile } from "../types/profile";
+import { GithubProfile, GithubRepo } from "../types/profile";
 import { twMerge } from "tailwind-merge";
 import Card from "../components/Card";
 
 const Blog = () => {
   const [profile, setProfile] = useState<GithubProfile>({} as GithubProfile);
   const [content, setContent] = useState<string>("");
+  const [repos, setRepos] = useState<GithubRepo[]>([]);
 
   useEffect(() => {
     fetch("https://api.github.com/users/Yan-CarlosIF")
       .then((response) => response.json())
       .then((data) => setProfile(data));
+  }, []);
+
+  useEffect(() => {
+    fetch(
+      "https://api.github.com/users/Yan-CarlosIF/repos?sort=created&direction=desc"
+    )
+      .then((response) => response.json())
+      .then((data) => setRepos(data));
   }, []);
 
   return (
@@ -42,13 +51,13 @@ const Blog = () => {
           />
         </div>
         <div className="grid grid-cols-2 gap-8 mt-12">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {repos.map((repo) => {
+            return (
+              <a key={repo.html_url} href={repo.html_url} target="_blank">
+                <Card repo={repo} />
+              </a>
+            );
+          })}
         </div>
       </div>
     </div>

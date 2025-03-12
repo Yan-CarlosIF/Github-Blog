@@ -1,4 +1,12 @@
-const Card = () => {
+import { GithubRepo } from "../types/profile";
+import { differenceInDays } from "date-fns";
+interface CardProps {
+  repo: GithubRepo;
+}
+
+const Card = ({ repo }: CardProps) => {
+  const time = differenceInDays(new Date(), new Date(repo.created_at));
+
   return (
     <div
       className={`flex flex-col border-2 border-transparent bg-[var(--base-post)] w-0.70 h-64 p-8 max-w-[416px] gap-5 rounded-[10px]
@@ -6,18 +14,16 @@ const Card = () => {
     >
       <div className="flex items-center justify-between">
         <h1 className="text-[var(--base-title)] text-xl font-bold">
-          JavaScript data types and data structures
+          {repo.name}
         </h1>
         <span className="text-[var(--base-span)] text-sm ml-10 whitespace-nowrap self-start mt-1">
-          Há 1 dia
+          {time < 1
+            ? "Criado hoje"
+            : `Há ${time} ${time === 1 ? "dia" : "dias"}`}
         </span>
       </div>
       <p className="text-[var(--base-text)] text-ellipsis line-clamp-4">
-        Programming languages all have built-in data structures, but these often
-        differ from one language to another. This article attempts to list the
-        built-in data structures available in JavaScript and what properties
-        they have. These can be used to build other data structures. Wherever
-        possible, comparisons with other languages are drawn.
+        {repo.description}
       </p>
     </div>
   );

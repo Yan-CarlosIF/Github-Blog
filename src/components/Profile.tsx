@@ -35,7 +35,11 @@ const Profile = ({ profile }: ProfileProps) => {
           <h1 className="text-[var(--base-title)] text-2xl font-bold">
             {profile.name}
           </h1>
-          <a href={`https://github.com/${profile.login}`} target="_blank">
+          <a
+            className="border-1 border-transparent hover:border-b-[var(--blue)] transition-colors duration-200 ease-in-out"
+            href={`https://github.com/${profile.login}`}
+            target="_blank"
+          >
             <div className="flex items-center gap-2">
               <span className="text-[var(--blue)] font-bold text-xs">
                 GITHUB
