@@ -3,6 +3,7 @@ export interface GithubProfile {
   name: string;
   bio: string;
   public_repos: number;
+  company: string;
 }
 
 export interface GithubRepo {

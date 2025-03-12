@@ -5,20 +5,22 @@ import { GithubProfile, GithubRepo } from "../types/profile";
 import { twMerge } from "tailwind-merge";
 import Card from "../components/Card";
 
+const PROFILE_NAME = "Yan-CarlosIF";
+
 const Blog = () => {
   const [profile, setProfile] = useState<GithubProfile>({} as GithubProfile);
   const [content, setContent] = useState<string>("");
   const [repos, setRepos] = useState<GithubRepo[]>([]);
 
   useEffect(() => {
-    fetch("https://api.github.com/users/Yan-CarlosIF")
+    fetch(`https://api.github.com/users/${PROFILE_NAME}`)
       .then((response) => response.json())
       .then((data) => setProfile(data));
   }, []);
 
   useEffect(() => {
     fetch(
-      "https://api.github.com/users/Yan-CarlosIF/repos?sort=created&direction=desc"
+      `https://api.github.com/users/${PROFILE_NAME}/repos?sort=created&direction=desc`
     )
       .then((response) => response.json())
       .then((data) => setRepos(data));
@@ -32,7 +34,7 @@ const Blog = () => {
         <div className="flex flex-col self-start gap-3 mt-18">
           <div className="flex items-center justify-between">
             <h2 className="text-[var(--base-subtitle)] font-bold text-lg">
-              Respositórios
+              Seus Respositórios
             </h2>
             <span className="text-[var(--base-span)] text-sm">
               {profile.public_repos} Repositórios
