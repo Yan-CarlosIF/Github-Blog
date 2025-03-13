@@ -4,13 +4,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 interface LinkComponentProps {
   content: string;
   profileName: string;
+  repoName?: string;
 }
 
-const LinkComponent = ({ profileName, content }: LinkComponentProps) => {
+const LinkComponent = ({
+  profileName,
+  content,
+  repoName,
+}: LinkComponentProps) => {
+  const link = repoName ? `/${profileName}/${repoName}` : `/${profileName}`;
+
   return (
     <a
       className="border-1 border-transparent hover:border-b-[var(--blue)] transition-colors duration-200 ease-in-out"
-      href={`https://github.com/${profileName}`}
+      href={`https://github.com/${link}`}
       target="_blank"
     >
       <div className="flex items-center gap-2">

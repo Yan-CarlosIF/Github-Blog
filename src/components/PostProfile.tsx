@@ -38,7 +38,11 @@ const PostProfile = ({ profile, repoName }: postProfileProps) => {
             <span className="text-[var(--blue)] font-bold text-xs">VOLTAR</span>
           </div>
         </Link>
-        <LinkComponent profileName={profile} content="VER NO GITHUB" />
+        <LinkComponent
+          profileName={profile}
+          repoName={repo.name}
+          content="VER NO GITHUB"
+        />
       </div>
 
       <h1 className="text-[var(--base-title)] text-2xl font-bold mt-5">
