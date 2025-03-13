@@ -4,6 +4,7 @@ import Profile from "../components/Profile";
 import { GithubProfile, GithubRepo } from "../types/profile";
 import { twMerge } from "tailwind-merge";
 import Card from "../components/Card";
+import { Link } from "react-router-dom";
 
 const PROFILE_NAME = "Yan-CarlosIF";
 
@@ -69,16 +70,22 @@ const Blog = () => {
           {!content
             ? repos.map((repo) => {
                 return (
-                  <a key={repo.html_url} href={repo.html_url} target="_blank">
+                  <Link
+                    key={repo.html_url}
+                    to={`/post/${PROFILE_NAME}/${repo.name}`}
+                  >
                     <Card repo={repo} />
-                  </a>
+                  </Link>
                 );
               })
             : filteredRepos?.map((repo) => {
                 return (
-                  <a key={repo.html_url} href={repo.html_url} target="_blank">
+                  <Link
+                    key={repo.html_url}
+                    to={`/post/${PROFILE_NAME}/${repo.name}`}
+                  >
                     <Card repo={repo} />
-                  </a>
+                  </Link>
                 );
               })}
         </div>

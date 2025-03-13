@@ -4,13 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 interface InfoProps {
   content: string;
   icon: IconDefinition;
+  color?: string;
 }
 
-const Info = ({ content, icon }: InfoProps) => {
+const Info = ({ content, icon, color }: InfoProps) => {
   return (
     <div className="flex items-center gap-2">
-      <FontAwesomeIcon icon={icon} width={18} height={18} />
-      <span>{content}</span>
+      <FontAwesomeIcon icon={icon} width={18} height={18} color={color} />
+      <span style={{ lineHeight: "100%" }}>{content}</span>
     </div>
   );
 };

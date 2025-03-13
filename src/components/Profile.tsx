@@ -1,13 +1,9 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowUpRightFromSquare,
-  faBuilding,
-  faUserGroup,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBuilding, faUserGroup } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import Info from "./Info";
 import { useEffect, useState } from "react";
 import { GithubProfile } from "../types/profile";
+import LinkComponent from "./LinkComponent";
 
 interface ProfileProps {
   profile: GithubProfile;
@@ -35,22 +31,7 @@ const Profile = ({ profile }: ProfileProps) => {
           <h1 className="text-[var(--base-title)] text-2xl font-bold">
             {profile.name}
           </h1>
-          <a
-            className="border-1 border-transparent hover:border-b-[var(--blue)] transition-colors duration-200 ease-in-out"
-            href={`https://github.com/${profile.login}`}
-            target="_blank"
-          >
-            <div className="flex items-center gap-2">
-              <span className="text-[var(--blue)] font-bold text-xs">
-                GITHUB
-              </span>
-              <FontAwesomeIcon
-                icon={faArrowUpRightFromSquare}
-                color="#3294f8"
-                size="xs"
-              />
-            </div>
-          </a>
+          <LinkComponent profileName={profile.login} content="GITHUB" />
         </div>
         <span className="text-[var(--base-text)] text-base">{profile.bio}</span>
         <div className="flex text-[var(--base-subtitle)] gap-6 mt-4">

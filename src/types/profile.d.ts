@@ -11,4 +11,5 @@ export interface GithubRepo {
   description: string;
   created_at: string;
   html_url: string;
+  stargazers_count: number;
 }
