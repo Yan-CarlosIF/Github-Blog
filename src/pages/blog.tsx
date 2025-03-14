@@ -15,8 +15,6 @@ const Blog = () => {
   const { profilename } = useParams();
   const navigate = useNavigate();
 
-  console.log(profilename);
-
   useEffect(() => {
     fetch(`https://api.github.com/users/${profilename}`)
       .then((response) => response.json())
@@ -41,7 +39,7 @@ const Blog = () => {
     }
   }, [content, repos]);
 
-  if ("message" in profile) {
+  if (!("name" in profile)) {
     navigate("*");
   }
 
