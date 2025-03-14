@@ -36,7 +36,10 @@ const Profile = ({ profile }: ProfileProps) => {
         <span className="text-[var(--base-text)] text-base">{profile.bio}</span>
         <div className="flex text-[var(--base-subtitle)] gap-6 mt-4">
           <Info content={profile.login} icon={faGithub} />
-          <Info content={profile.company} icon={faBuilding} />
+          <Info
+            content={profile.company ? profile.company : "Cargo"}
+            icon={faBuilding}
+          />
           <Info content={`${followers} seguidores`} icon={faUserGroup} />
         </div>
       </div>
