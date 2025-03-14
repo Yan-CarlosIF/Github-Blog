@@ -31,7 +31,7 @@ const PostProfile = ({ profile, repoName }: postProfileProps) => {
       <div className="flex justify-between gap-6 w-full h-5 text-[var(--blue)]">
         <Link
           className="border-1 border-transparent hover:border-b-[var(--blue)] transition-colors duration-200 ease-in-out"
-          to="/"
+          to={`/Blog/${profile}`}
         >
           <div className="flex items-center justify-center gap-2">
             <FontAwesomeIcon icon={faChevronLeft} />

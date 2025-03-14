@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
-import Header from "../assets/Cover.svg";
 import Profile from "../components/Profile";
 import { GithubProfile, GithubRepo } from "../types/profile";
 import { twMerge } from "tailwind-merge";
 import Card from "../components/Card";
-import { Link } from "react-router-dom";
-
-const PROFILE_NAME = "Yan-CarlosIF";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 const Blog = () => {
   const [profile, setProfile] = useState<GithubProfile>({} as GithubProfile);
@@ -15,20 +12,24 @@ const Blog = () => {
   const [filteredRepos, setFilteredRepos] = useState<GithubRepo[] | undefined>(
     []
   );
+  const { profilename } = useParams();
+  const navigate = useNavigate();
+
+  console.log(profilename);
 
   useEffect(() => {
-    fetch(`https://api.github.com/users/${PROFILE_NAME}`)
+    fetch(`https://api.github.com/users/${profilename}`)
       .then((response) => response.json())
       .then((data) => setProfile(data));
-  }, []);
+  }, [profilename]);
 
   useEffect(() => {
     fetch(
-      `https://api.github.com/users/${PROFILE_NAME}/repos?sort=created&direction=desc`
+      `https://api.github.com/users/${profilename}/repos?sort=created&direction=desc`
     )
       .then((response) => response.json())
       .then((data) => setRepos(data));
-  }, []);
+  }, [profilename]);
 
   useEffect(() => {
     if (content) {
@@ -40,55 +41,56 @@ const Blog = () => {
     }
   }, [content, repos]);
 
+  if ("message" in profile) {
+    navigate("*");
+  }
+
   return (
-    <div className="flex flex-col justify-center items-center mb-58">
-      <img className="w-full h-[296px] object-cover" src={Header} alt="" />
-      <div>
-        <Profile profile={profile} />
-        <div className="flex flex-col self-start gap-3 mt-18">
-          <div className="flex items-center justify-between">
-            <h2 className="text-[var(--base-subtitle)] font-bold text-lg">
-              Seus Respositórios
-            </h2>
-            <span className="text-[var(--base-span)] text-sm">
-              {profile.public_repos} Repositórios
-            </span>
-          </div>
-          <input
-            className={twMerge(
-              `p-2 rounded-md outline-none bg-[var(--base-input)] text-[var(--base-label)] border-1 border-[var(--base-border)]
+    <div>
+      <Profile profile={profile} />
+      <div className="flex flex-col self-start gap-3 mt-18">
+        <div className="flex items-center justify-between">
+          <h2 className="text-[var(--base-subtitle)] font-bold text-lg">
+            Seus Respositórios
+          </h2>
+          <span className="text-[var(--base-span)] text-sm">
+            {profile.public_repos} Repositórios
+          </span>
+        </div>
+        <input
+          className={twMerge(
+            `p-2 rounded-md outline-none bg-[var(--base-input)] text-[var(--base-label)] border-1 border-[var(--base-border)]
               focus:border-[var(--blue)] transition-colors duration-200 ease-in-out`,
-              content && "text-[var(--base-text)]"
-            )}
-            type="text"
-            placeholder="Buscar conteúdo"
-            onChange={(e) => setContent(e.target.value)}
-            value={content}
-          />
-        </div>
-        <div className="grid grid-cols-2 gap-8 mt-12">
-          {!content
-            ? repos.map((repo) => {
-                return (
-                  <Link
-                    key={repo.html_url}
-                    to={`/post/${PROFILE_NAME}/${repo.name}`}
-                  >
-                    <Card repo={repo} />
-                  </Link>
-                );
-              })
-            : filteredRepos?.map((repo) => {
-                return (
-                  <Link
-                    key={repo.html_url}
-                    to={`/post/${PROFILE_NAME}/${repo.name}`}
-                  >
-                    <Card repo={repo} />
-                  </Link>
-                );
-              })}
-        </div>
+            content && "text-[var(--base-text)]"
+          )}
+          type="text"
+          placeholder="Buscar conteúdo"
+          onChange={(e) => setContent(e.target.value)}
+          value={content}
+        />
+      </div>
+      <div className="grid grid-cols-2 gap-8 mt-12">
+        {!content
+          ? repos.map((repo) => {
+              return (
+                <Link
+                  key={repo.html_url}
+                  to={`/post/${profilename}/${repo.name}`}
+                >
+                  <Card repo={repo} />
+                </Link>
+              );
+            })
+          : filteredRepos?.map((repo) => {
+              return (
+                <Link
+                  key={repo.html_url}
+                  to={`/post/${profilename}/${repo.name}`}
+                >
+                  <Card repo={repo} />
+                </Link>
+              );
+            })}
       </div>
     </div>
   );
