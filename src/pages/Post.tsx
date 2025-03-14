@@ -29,10 +29,7 @@ const Post = () => {
     <div className="flex flex-col justify-center items-center mb-58">
       <img className="w-full h-[296px] object-cover" src={Header} alt="" />
       <PostProfile profile={profile} repoName={repo} />
-      <div
-        className="markdown-body w-[864px] mx-auto p-6 text-[var(--base-text)] rounded-lg"
-        style={{ background: "var(--base-backgroud)" }}
-      >
+      <div className="markdown-body w-[864px] mx-auto p-6 rounded-lg">
         <div className="p-6 rounded-lg">
           <ReactMarkdown>{content}</ReactMarkdown>
         </div>

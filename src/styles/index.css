@@ -5,6 +5,17 @@
   font-family: "Nunito";
   line-height: 160%;
   box-shadow: 0;
+
+  .markdown-body {
+    background: var(--base-background) !important;
+    color: var(--base-title) !important;
+
+    pre {
+      border-radius: 2px !important;
+      background-color: var(--base-post) !important;
+      color: #d5dce3 !important;
+    }
+  }
 }
 
 :root {
