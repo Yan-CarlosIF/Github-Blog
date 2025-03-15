@@ -8,14 +8,14 @@ const Home = () => {
 
   return (
     <>
-      <div className="bg-[var(--base-profile)] flex flex-col justify-center items-center w-[864px] h-[212px] rounded-[10px] object-cover mt-[-100px] p-6 gap-4">
-        <h1 className="text-[var(--base-title)] text-2xl font-bold">
+      <div className="bg-[var(--base-profile)] flex flex-col justify-center items-center w-[350px] sm:w-[680px] lg:w-[864px] h-[212px] rounded-[10px] object-cover mt-[-100px] p-6 gap-4">
+        <h1 className="text-[var(--base-title)] text-[22px] sm:text-2xl font-bold">
           Buscar Usuário do GitHub
         </h1>
 
         <input
           className={twMerge(
-            `p-2 rounded-md w-3xl outline-none bg-[var(--base-input)] text-[var(--base-label)] border-1
+            `p-2 rounded-md w-5/6 outline-none bg-[var(--base-input)] text-[var(--base-label)] border-1
             border-[var(--base-border)] focus:border-[var(--blue)] transition-colors duration-200 ease-in-out`,
             input && "text-[var(--base-text)]"
           )}
@@ -27,7 +27,7 @@ const Home = () => {
 
         <button
           className={twMerge(
-            `bg-[var(--base-border)] rounded-md w-1/6 h-1/4 p-2transition-colors duration-200 ease-in-out
+            `bg-[var(--base-border)] rounded-md w-[100px] sm:w-1/6 h-1/4 p-2transition-colors duration-200 ease-in-out
             text-[var(--base-title)] cursor-pointer disabled:cursor-not-allowed disabled:opacity-50`,
             input && "hover:bg-[#0b72e7]"
           )}

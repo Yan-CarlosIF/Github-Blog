@@ -24,12 +24,14 @@ const LinkComponent = ({
       to={toHome ? "/" : `https://github.com${link}`}
       target={target}
     >
-      <div className="flex items-center gap-2">
-        <span className="text-[var(--blue)] font-bold text-xs">{content}</span>
+      <div className="flex items-center gap-1 sm:gap-2">
+        <span className="text-[var(--blue)] font-bold text-[8px] sm:text-xs">
+          {content}
+        </span>
         <FontAwesomeIcon
           icon={faArrowUpRightFromSquare}
           color="#3294f8"
-          size="xs"
+          className="w-[8px] h-[8px] sm:w-[12px] sm:h-[12px]"
         />
       </div>
     </Link>

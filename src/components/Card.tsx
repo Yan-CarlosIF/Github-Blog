@@ -9,7 +9,7 @@ const Card = ({ repo }: CardProps) => {
 
   return (
     <div
-      className={`flex flex-col border-2 border-transparent bg-[var(--base-post)] w-0.70 h-64 p-8 max-w-[416px] gap-5 rounded-[10px]
+      className={`flex flex-col border-2 border-transparent bg-[var(--base-post)] w-[340px] h-64 p-8 sm:w-[325px] lg:w-[416px] gap-5 rounded-[10px]
      hover:border-[var(--base-label)] hover:cursor-pointer transition-colors duration-200 ease-in-out `}
     >
       <div className="flex items-center justify-between">

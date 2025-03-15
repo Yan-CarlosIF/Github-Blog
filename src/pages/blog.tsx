@@ -43,9 +43,9 @@ const Blog = () => {
   if ("status" in profile) navigate("*");
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <Profile profile={profile} />
-      <div className="flex flex-col self-start gap-3 mt-18">
+      <div className="flex flex-col w-[350px] sm:w-[680px] lg:w-[864px] gap-3 mt-18">
         <div className="flex items-center justify-between">
           <h2 className="text-[var(--base-subtitle)] font-bold text-lg">
             Seus Respositórios
@@ -56,7 +56,7 @@ const Blog = () => {
         </div>
         <input
           className={twMerge(
-            `p-2 rounded-md outline-none bg-[var(--base-input)] text-[var(--base-label)] border-1 border-[var(--base-border)]
+            `p-2 w-full rounded-md self-center outline-none bg-[var(--base-input)] text-[var(--base-label)] border-1 border-[var(--base-border)]
               focus:border-[var(--blue)] transition-colors duration-200 ease-in-out`,
             content && "text-[var(--base-text)]"
           )}
@@ -66,7 +66,7 @@ const Blog = () => {
           value={content}
         />
       </div>
-      <div className="grid grid-cols-2 gap-8 mt-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-12">
         {!content
           ? repos.map((repo) => {
               return (

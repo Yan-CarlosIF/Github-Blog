@@ -21,7 +21,7 @@ const Post = () => {
   return (
     <>
       {profile && repo && <PostProfile profile={profile} repoName={repo} />}
-      <div className="markdown-body w-[864px] mx-auto p-6 rounded-lg">
+      <div className="markdown-body w-[420px] sm:w-[640px] lg:w-[864px] mx-auto p-6 rounded-lg">
         <div className="p-6 rounded-lg">
           <ReactMarkdown>{content}</ReactMarkdown>
         </div>

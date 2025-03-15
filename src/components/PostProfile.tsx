@@ -27,7 +27,7 @@ const PostProfile = ({ profile, repoName }: postProfileProps) => {
   }, [profile, repoName]);
 
   return (
-    <div className="bg-[var(--base-profile)] flex flex-col justify-items-start w-[864px] h-[168px] rounded-[10px] object-cover mt-[-100px] p-8">
+    <div className="bg-[var(--base-profile)] flex flex-col justify-items-start w-[350px] sm:w-[680px] lg:w-[864px] h-[168px] rounded-[10px] object-cover mt-[-100px] p-8">
       <div className="flex justify-between gap-6 w-full h-5 text-[var(--blue)]">
         <Link
           className="border-1 border-transparent hover:border-b-[var(--blue)] transition-colors duration-200 ease-in-out"
