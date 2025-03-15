@@ -20,7 +20,7 @@ const Blog = () => {
       .then((response) => response.json())
       .then((data) => setProfile(data))
       .catch(() => navigate("*"));
-  }, [profilename]);
+  }, [profilename, navigate]);
 
   useEffect(() => {
     fetch(
@@ -39,6 +39,8 @@ const Blog = () => {
       setFilteredRepos(filtered);
     }
   }, [content, repos]);
+
+  if ("status" in profile) navigate("*");
 
   return (
     <div>
