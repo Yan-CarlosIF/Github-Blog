@@ -18,7 +18,8 @@ const Blog = () => {
   useEffect(() => {
     fetch(`https://api.github.com/users/${profilename}`)
       .then((response) => response.json())
-      .then((data) => setProfile(data));
+      .then((data) => setProfile(data))
+      .catch(() => navigate("*"));
   }, [profilename]);
 
   useEffect(() => {
@@ -38,10 +39,6 @@ const Blog = () => {
       setFilteredRepos(filtered);
     }
   }, [content, repos]);
-
-  if (!("name" in profile)) {
-    navigate("*");
-  }
 
   return (
     <div>
