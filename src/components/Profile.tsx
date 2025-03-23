@@ -29,7 +29,7 @@ const Profile = ({ profile }: ProfileProps) => {
       <div className="flex flex-col self-center gap-2 w-full">
         <div className="flex items-center justify-between">
           <h1 className="text-[var(--base-title)] text-xs sm:text-2xl font-bold">
-            {profile.name}
+            {profile.name ?? profile.login}
           </h1>
           <LinkComponent profileName={profile.login} content="GITHUB" />
         </div>
@@ -38,11 +38,10 @@ const Profile = ({ profile }: ProfileProps) => {
         </span>
         <div className="flex text-[var(--base-subtitle)] gap-2 sm:gap-6 sm:mt-4">
           <Info content={profile.login} icon={faGithub} />
-          <Info
-            hidden
-            content={profile.company ? profile.company : "Cargo"}
-            icon={faBuilding}
-          />
+          {profile.company && (
+            <Info hidden content={profile.company} icon={faBuilding} />
+          )}
+
           <Info content={`${followers} seguidores`} icon={faUserGroup} />
         </div>
       </div>
